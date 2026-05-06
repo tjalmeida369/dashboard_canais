@@ -17647,36 +17647,85 @@ st.markdown("""
 div.st-key-dashboard_tab_ativa div[role="radiogroup"] {
     display: grid !important;
     grid-template-columns: repeat(6, minmax(0, 1fr)) !important;
-    gap: 0.45rem !important;
-    margin: 0.25rem 0 1.1rem 0 !important;
+    gap: 0.28rem !important;
+    margin: 0.25rem 0 1.05rem 0 !important;
+    padding: 0.34rem !important;
+    border: 1px solid rgba(121, 14, 9, 0.12) !important;
+    border-radius: 22px !important;
+    background:
+        linear-gradient(180deg, rgba(255,255,255,0.96) 0%, rgba(255,248,247,0.92) 100%) !important;
+    box-shadow:
+        0 0.65rem 1.35rem rgba(121, 14, 9, 0.07),
+        inset 0 1px 0 rgba(255,255,255,0.96) !important;
 }
 div.st-key-dashboard_tab_ativa div[role="radiogroup"] label {
-    min-height: 3rem !important;
-    border: 1px solid rgba(121, 14, 9, 0.14) !important;
-    border-radius: 999px !important;
-    background: linear-gradient(180deg, #FFFFFF 0%, #FFF7F6 100%) !important;
-    box-shadow: 0 0.45rem 1rem rgba(121, 14, 9, 0.08), inset 0 1px 0 rgba(255,255,255,0.92) !important;
+    min-height: 2.55rem !important;
+    border: 1px solid transparent !important;
+    border-radius: 17px !important;
+    background: transparent !important;
+    box-shadow: none !important;
     justify-content: center !important;
-    padding: 0.35rem 0.55rem !important;
+    padding: 0.34rem 0.52rem !important;
+    transition: background 160ms ease, box-shadow 160ms ease, transform 160ms ease, border-color 160ms ease !important;
 }
 div.st-key-dashboard_tab_ativa div[role="radiogroup"] label:has(input:checked) {
-    border-color: rgba(121, 14, 9, 0.55) !important;
+    border-color: rgba(121, 14, 9, 0.34) !important;
     background: linear-gradient(135deg, #790E09 0%, #5A0A06 100%) !important;
     color: #FFFFFF !important;
-    box-shadow: 0 0.7rem 1.35rem rgba(121, 14, 9, 0.22) !important;
+    box-shadow:
+        0 0.55rem 1.05rem rgba(121, 14, 9, 0.20),
+        inset 0 1px 0 rgba(255,255,255,0.18) !important;
 }
 div.st-key-dashboard_tab_ativa div[role="radiogroup"] label:has(input:checked) p,
 div.st-key-dashboard_tab_ativa div[role="radiogroup"] label:has(input:checked) span {
     color: #FFFFFF !important;
 }
 div.st-key-dashboard_tab_ativa div[role="radiogroup"] input {
-    display: none !important;
+    position: absolute !important;
+    opacity: 0 !important;
+    width: 1px !important;
+    height: 1px !important;
+    pointer-events: none !important;
 }
 div.st-key-dashboard_tab_ativa div[role="radiogroup"] p {
     font-weight: 800 !important;
-    font-size: clamp(0.72rem, 0.86vw, 0.86rem) !important;
+    font-size: clamp(0.7rem, 0.78vw, 0.82rem) !important;
     color: #790E09 !important;
     white-space: nowrap !important;
+    margin: 0 !important;
+    line-height: 1.05 !important;
+    letter-spacing: 0.02em !important;
+}
+div.st-key-dashboard_tab_ativa div[role="radiogroup"] > label {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 0 !important;
+    cursor: pointer !important;
+    overflow: hidden !important;
+}
+div.st-key-dashboard_tab_ativa div[role="radiogroup"] > label > div:first-child:not([data-testid="stMarkdownContainer"]) {
+    display: none !important;
+}
+div.st-key-dashboard_tab_ativa div[role="radiogroup"] > label svg {
+    display: none !important;
+}
+div.st-key-dashboard_tab_ativa div[role="radiogroup"] [data-testid="stMarkdownContainer"] {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+    text-align: center !important;
+}
+div.st-key-dashboard_tab_ativa div[role="radiogroup"] label:hover {
+    border-color: rgba(121, 14, 9, 0.18) !important;
+    background: rgba(121, 14, 9, 0.055) !important;
+    transform: translateY(-1px);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.92) !important;
+}
+div.st-key-dashboard_tab_ativa div[role="radiogroup"] label:has(input:checked):hover {
+    background: linear-gradient(135deg, #790E09 0%, #5A0A06 100%) !important;
+    transform: translateY(-1px);
 }
 @media (max-width: 900px) {
     div.st-key-dashboard_tab_ativa div[role="radiogroup"] {
