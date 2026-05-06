@@ -17644,9 +17644,18 @@ labels_abas_dashboard = [
 ]
 st.markdown("""
 <style>
+div.st-key-dashboard_tab_ativa,
+div.st-key-dashboard_tab_ativa > div,
+div.st-key-dashboard_tab_ativa div[data-testid="stRadio"] {
+    width: 100% !important;
+    max-width: none !important;
+}
 div.st-key-dashboard_tab_ativa div[role="radiogroup"] {
     display: grid !important;
     grid-template-columns: repeat(6, minmax(0, 1fr)) !important;
+    width: 100% !important;
+    max-width: none !important;
+    box-sizing: border-box !important;
     gap: 0.28rem !important;
     margin: 0.25rem 0 1.05rem 0 !important;
     padding: 0.34rem !important;
@@ -17688,6 +17697,10 @@ div.st-key-dashboard_tab_ativa div[role="radiogroup"] input {
     pointer-events: none !important;
 }
 div.st-key-dashboard_tab_ativa div[role="radiogroup"] p {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 0.36rem !important;
     font-weight: 800 !important;
     font-size: clamp(0.7rem, 0.78vw, 0.82rem) !important;
     color: #790E09 !important;
@@ -17736,12 +17749,12 @@ div.st-key-dashboard_tab_ativa div[role="radiogroup"] label:has(input:checked):h
 """, unsafe_allow_html=True)
 
 _label_abas_display = {
-    "INICIO": "INÍCIO",
-    "ATIVADOS": "ATIVADOS",
-    "PEDIDOS": "E-COMMERCE",
-    "LIGACOES": "TELEVENDAS",
-    "FUNIL_MOVEL": "EM CONSTRUÇÃO",
-    "DESATIVACOES": "DESATIVAÇÕES",
+    "INICIO": "🏠 INÍCIO",
+    "ATIVADOS": "📈 ATIVADOS",
+    "PEDIDOS": "🛒 E-COMMERCE",
+    "LIGACOES": "☎ TELEVENDAS",
+    "FUNIL_MOVEL": "🧩 EM CONSTRUÇÃO",
+    "DESATIVACOES": "📉 DESATIVAÇÕES",
 }
 
 _aba_padrao_dashboard = st.session_state.get("dashboard_tab_ativa", "INICIO")
