@@ -9733,7 +9733,7 @@ def criar_tabela_html_resumo_mensal_canal(
             color: #111827;
         }}
         .{id_base} th {{
-            background: #790E09;
+            background: linear-gradient(135deg, #5A0A06 0%, #3D0704 100%);
             color: #FFFFFF;
             padding: 7px 5px;
             border-right: 1px solid rgba(255,255,255,.22);
@@ -9748,7 +9748,7 @@ def criar_tabela_html_resumo_mensal_canal(
         }}
         .{id_base} th.col-meta,
         .{id_base} th.col-ytd {{
-            background: #8E1D16;
+            background: linear-gradient(135deg, #5A0A06 0%, #3D0704 100%);
         }}
         .{id_base} td {{
             padding: 6px 5px;
@@ -9768,7 +9768,8 @@ def criar_tabela_html_resumo_mensal_canal(
             background: #FFF8F7;
         }}
         .{id_base} tr.linha-grupo td {{
-            background: #790E09 !important;
+            background: linear-gradient(135deg, #5A0A06 0%, #3D0704 100%) !important;
+            background-color: #5A0A06 !important;
             color: #FFFFFF !important;
             font-weight: 850;
         }}
@@ -9781,9 +9782,24 @@ def criar_tabela_html_resumo_mensal_canal(
         .{id_base} tr.linha-grupo td.col-variacao.status-positivo,
         .{id_base} tr.linha-grupo td.col-variacao.status-negativo,
         .{id_base} tr.linha-grupo td.col-variacao.status-neutro {{
-            background: #790E09 !important;
+            background: linear-gradient(135deg, #5A0A06 0%, #3D0704 100%) !important;
+            background-color: #5A0A06 !important;
             color: #FFFFFF !important;
             font-weight: 850 !important;
+        }}
+        .{id_base} tr.linha-grupo:hover td,
+        .{id_base} tr.linha-total.linha-grupo:hover td,
+        .{id_base} tr.linha-total.linha-grupo-resumo:hover td {{
+            background: linear-gradient(135deg, #5A0A06 0%, #3D0704 100%) !important;
+            background-color: #5A0A06 !important;
+            color: #FFFFFF !important;
+            box-shadow: none !important;
+        }}
+        .{id_base} tr.linha-grupo td *,
+        .{id_base} tr.linha-total.linha-grupo td *,
+        .{id_base} tr.linha-total.linha-grupo-resumo td * {{
+            color: #FFFFFF !important;
+            -webkit-text-fill-color: #FFFFFF !important;
         }}
         .{id_base} tr.linha-grupo td.col-variacao::before {{
             content: "" !important;
@@ -9890,7 +9906,7 @@ def criar_tabela_html_resumo_mensal_canal(
         is_grupo = canal_txt.upper() in linhas_grupo or nivel == "grupo"
         tr_classes = []
         if is_grupo:
-            tr_classes.append("linha-grupo")
+            tr_classes.extend(["linha-total", "linha-grupo", "linha-grupo-resumo"])
         elif nivel == "regional":
             tr_classes.extend(["linha-regional", f"child-of-{parent}"])
         else:
@@ -9899,7 +9915,15 @@ def criar_tabela_html_resumo_mensal_canal(
         for idx_col, coluna in enumerate(colunas):
             classes = _classe_coluna(str(coluna), idx_col, idx_linha)
             if is_grupo:
+                classes = [classe for classe in classes if not str(classe).startswith("status-")]
                 classes.append("col-grupo-resumo")
+            style_attr = (
+                ' style="background:linear-gradient(135deg, #5A0A06 0%, #3D0704 100%) !important;'
+                'background-color:#5A0A06 !important;color:#FFFFFF !important;'
+                '-webkit-text-fill-color:#FFFFFF !important;font-weight:850 !important;'
+                'border-color:rgba(255,255,255,.18) !important;"'
+                if is_grupo else ""
+            )
             valor = escape(str(row[coluna]))
             if idx_col == 0 and has_children:
                 input_id = f"{id_base}-{row_key}"
@@ -9912,7 +9936,7 @@ def criar_tabela_html_resumo_mensal_canal(
                 valor = f'<span class="a9-regional-prefix">&#8627;</span>{valor}'
             else:
                 valor = _barra_coluna(idx_linha, idx_col, str(coluna), valor)
-            html += f'<td class="{" ".join(classes)}">{valor}</td>'
+            html += f'<td class="{" ".join(classes)}"{style_attr}>{valor}</td>'
         html += "</tr>"
 
     html += "</tbody></table></div>"
